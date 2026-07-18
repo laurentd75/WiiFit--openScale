@@ -432,7 +432,7 @@
     <string name="go_to_project_website_button">प्रोजेक्ट वेबसाइट पर जाएं</string>
 
      <!-- LegacyScaleAdapter (Bluetooth Driver) -->
-    <string name="legacy_adapter_event_initializing">प्रारंभिकरण प्रक्रिया (इनिशियलाइजेशन)...</string>
+    <string name="legacy_adapter_event_initializing">प्रारंभिकरण प्रक्रिया (इनिशियलाइजेशन)…</string>
     <string name="legacy_adapter_event_connection_lost">कनेक्शन टूट गया</string>
     <string name="legacy_adapter_event_connection_disconnected">कनेक्शन डिस्कनेक्ट हो गया</string>
     <string name="legacy_adapter_event_device_not_found">डिवाइस नहीं मिला। %s</string>
@@ -455,9 +455,11 @@
     <!-- Charts (LineChart) -->
     <string name="content_description_time_range_icon">समय सीमा (टाइम रेंज) आइकन</string>
     <string name="content_description_filter_chart_data">चार्ट डेटा फ़िल्टर करें</string>
-    <string name="content_description_time_range_selected">%s चयनित</string> <string name="content_description_measurement_filter_visible">माप फ़िल्टर दिखाई दे रहा है</string>
+    <string name="content_description_time_range_selected">%s चयनित</string>
+    <string name="content_description_measurement_filter_visible">माप फ़िल्टर दिखाई दे रहा है</string>
     <string name="content_description_measurement_filter_hidden">माप फ़िल्टर छिपा हुआ है</string>
-    <string name="line_chart_filter_title_template">%1$s (%2$d प्रविष्टियां)</string> <string name="time_range_all_days">सभी दिन</string>
+    <string name="line_chart_filter_title_template">%1$s (%2$d प्रविष्टियां)</string>
+    <string name="time_range_all_days">सभी दिन</string>
     <string name="time_range_last_7_days">पिछले 7 दिन</string>
     <string name="time_range_last_30_days">पिछले 30 दिन</string>
     <string name="time_range_last_365_days">पिछले 365 दिन</string>
@@ -547,7 +549,7 @@
     <string name="insights_summary_plateau">%1$d दिनों से कोई महत्वपूर्ण बदलाव नहीं — आपका शरीर अनुकूलित (adapt) हो रहा है।</string>
     <string name="insights_summary_trend_change_down">हालिया गिरावट का रुझान — आपकी दीर्घकालिक (long-term) दिशा की तुलना में सकारात्मक बदलाव।</string>
     <string name="insights_summary_trend_change_up">हालिया बढ़त का रुझान — अपनी दीर्घकालिक (long-term) दिशा पर नज़र रखें।</string>
-    <string name="insights_summary_volatility_high">अत्यधिक उतार-चढ़ाव पाया गया — यह सामान्य है और शरीर में होने वाले प्राकृतिक बदलावों जैसे कि 'वॉटर रिटेंशन' (पानी जमा होना) को दर्शाता है।</string>
+    <string name="insights_summary_volatility_high">अत्यधिक उतार-चढ़ाव पाया गया — यह सामान्य है और शरीर में होने वाले प्राकृतिक बदलावों जैसे कि  \'वॉटर रिटेंशन\' (पानी जमा होना) को दर्शाता है।</string>
     <string name="insights_summary_volatility_stable">आपके मान (values) बहुत सुसंगत हैं — यह एक विश्वसनीय डेटा आधार है।</string>
     <string name="insights_section_body_pattern">आपके शरीर की संरचना (Body Composition)</string>
     <string name="insights_placeholder_body_pattern">इस विश्लेषण की गणना करने के लिए पिछले %2$d दिनों के भीतर चारों मापों (वजन, बॉडी फैट, मांसपेशियां, पानी) के साथ कम से कम %1$d माप होने आवश्यक हैं।</string>
@@ -782,7 +784,7 @@
     <string name="import_summary_skipped_date_parse_errors">"तारीख के प्रारूप में त्रुटि के कारण %1$d पंक्तियाँ छोड़ दी गईं।"</string>
     <string name="import_summary_values_skipped_parse_errors">"%1$d व्यक्तिगत मानों का विश्लेषण नहीं किया जा सका।"</string>
     <string name="import_error_no_valid_data">CSV फ़ाइल में कोई वैध डेटा नहीं मिला, या सभी पंक्तियों में त्रुटियाँ थीं।</string>
-    <string name="import_error_missing_date_column">इम्पोर्ट विफल रहा: CSV हेडर में अनिवार्य 'तारीख' कॉलम गायब है।</string>
+    <string name="import_error_missing_date_column">इम्पोर्ट विफल रहा: CSV हेडर में अनिवार्य \'तारीख\' कॉलम गायब है।</string>
     <string name="import_error_cannot_read_file">इम्पोर्ट विफल रहा: फ़ाइल को पढ़ा नहीं जा सका।</string>
     <string name="import_error_generic">इम्पोर्ट के दौरान त्रुटि हुई: %1$s</string>
     <string name="import_no_users_available">इम्पोर्ट करने के लिए कोई उपयोगकर्ता उपलब्ध नहीं है।</string>
