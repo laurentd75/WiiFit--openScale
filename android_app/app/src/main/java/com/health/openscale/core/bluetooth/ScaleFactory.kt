@@ -73,6 +73,7 @@ import com.health.openscale.core.bluetooth.scales.EEBBLHandler
 import com.health.openscale.core.bluetooth.scales.StandardBeurerSanitasHandler
 import com.health.openscale.core.bluetooth.scales.TrisaBodyAnalyzeHandler
 import com.health.openscale.core.bluetooth.scales.TuningProfile
+import com.health.openscale.core.bluetooth.scales.VitafitVT701Handler
 import com.health.openscale.core.bluetooth.scales.YunmaiHandler
 import com.health.openscale.core.bluetooth.scales.YunmaiXHandler
 import com.health.openscale.core.facade.MeasurementFacade
@@ -132,6 +133,7 @@ class ScaleFactory @Inject constructor(
         MiScaleHandler(),
         RunstarR5Handler(),
         RobiS9Handler(),
+        VitafitVT701Handler(),
         EEBBLHandler(),
         MGBHandler(),
         MedisanaBs44xHandler(),
