@@ -322,13 +322,17 @@ fun UserDetailScreen(
         OutlinedTextField(
             value = heightValueString,
             onValueChange = { newValue ->
-                val filteredValue = newValue.filter { it.isDigit() || it == '.' }
+                // Accept both '.' and ',' as the decimal separator (comma-locale keyboards such as
+                // Spanish emit a comma) and normalize to a dot immediately, so heightValueString is
+                // always dot-form for the toFloatOrNull() parses on save and unit conversion.
+                val filteredValue = newValue.filter { it.isDigit() || it == '.' || it == ',' }
+                    .replace(',', '.')
                 if (filteredValue.count { it == '.' } <= 1) {
                     heightValueString = filteredValue
                 }
             },
             label = { Text(stringResource(R.string.user_detail_label_height)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             trailingIcon = {

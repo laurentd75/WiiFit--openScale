@@ -134,7 +134,11 @@ fun NumberInputField(
                 onValueChange(String.format(Locale.US, "%.3f", stDec).trimEnd('0').trimEnd('.'))
             }
         } else {
-            onValueChange(textValue.text)
+            // Normalize a comma decimal separator to a dot at the source, so every downstream
+            // consumer (measurement save loop, dialog onConfirm, …) can parse with the
+            // locale-independent toFloatOrNull() without repeating the replace at each call site.
+            // Comma-locale keyboards (e.g. Spanish) emit "80,5" and the input filter permits it.
+            onValueChange(textValue.text.replace(',', '.'))
         }
     }
 
