@@ -470,6 +470,41 @@ class DatabaseProvider : ContentProvider() {
                         processValueUpdate(waterFromProviderPercent, MeasurementTypeKey.WATER, MeasurementColumns.WATER)
                         processValueUpdate(muscleFromProviderPercent, MeasurementTypeKey.MUSCLE, MeasurementColumns.MUSCLE)
 
+                        // Generic inbound values (all types incl. custom) supplied as a
+                        // "values_json" payload — mirrors the insert path. Lets an external app
+                        // (e.g. a circumference tape) enrich an existing entry with any metric.
+                        // Values arrive canonical and are converted to the user's unit by parse().
+                        val valuesJson = values.getAsString(MeasurementColumns.VALUES_JSON)
+                        if (valuesJson != null) {
+                            val typesByKey = allMeasurementTypes.associateBy { it.key.name }
+                            val typesById = allMeasurementTypes.associateBy { it.id }
+                            // Skip types already handled by the explicit weight/fat/water/muscle
+                            // columns above, so a duplicate in the JSON can't overwrite them.
+                            val handledTypeIds = buildSet {
+                                if (values.containsKey(MeasurementColumns.WEIGHT)) typeMap[MeasurementTypeKey.WEIGHT]?.id?.let(::add)
+                                if (values.containsKey(MeasurementColumns.BODY_FAT)) typeMap[MeasurementTypeKey.BODY_FAT]?.id?.let(::add)
+                                if (values.containsKey(MeasurementColumns.WATER)) typeMap[MeasurementTypeKey.WATER]?.id?.let(::add)
+                                if (values.containsKey(MeasurementColumns.MUSCLE)) typeMap[MeasurementTypeKey.MUSCLE]?.id?.let(::add)
+                            }
+                            GenericValueJson.parse(valuesJson, typesByKey, typesById).forEach { (typeId, userValue) ->
+                                if (typeId in handledTypeIds) return@forEach
+                                val existingValue = existingMeasurementWithValues.values.find { it.type.id == typeId }
+                                if (existingValue != null) {
+                                    if (existingValue.value.floatValue != userValue) {
+                                        databaseRepository.updateMeasurementValue(existingValue.value.copy(floatValue = userValue))
+                                        anyChangeMade = true
+                                        LogManager.d(TAG, "Updated typeId=$typeId for measurement ${measurementToUpdate.id} to $userValue (values_json)")
+                                    }
+                                } else {
+                                    databaseRepository.insertMeasurementValue(
+                                        MeasurementValue(measurementId = measurementToUpdate.id, typeId = typeId, floatValue = userValue)
+                                    )
+                                    anyChangeMade = true
+                                    LogManager.d(TAG, "Inserted typeId=$typeId for measurement ${measurementToUpdate.id} = $userValue (values_json)")
+                                }
+                            }
+                        }
+
                         if (anyChangeMade) {
                             LogManager.d(TAG, "Measurement values changed for user ${measurementToUpdate.userId}. Derived values will be recalculated by repository calls.")
                             return@runBlocking 1 // Return 1 row affected
